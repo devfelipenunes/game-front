@@ -12,7 +12,7 @@ const FACTORY_ADDRESS = "0xYourFactoryContractAddress";
 const FIGHTING_ADDRESS = "0xYourFightingContractAddress";
 const ROBOTSNFT_ADDRESS = "0xYourRobotsNFTContractAddress";
 const REWARDTOKEN_ADDRESS = "0xYourRewardTokenContractAddress";
-const CHAIN_ID = "0xYourChainId";
+const CHAIN_ID = "0x13882";
 
 function App() {
   const [provider, setProvider] = useState(null);
@@ -88,7 +88,7 @@ function App() {
 
   const createArena = async (robotId) => {
     await robotsNFT.approve(FIGHTING_ADDRESS, robotId);
-    await rewardToken.approve(FIGHTING_ADDRESS, ethers.utils.parseEther("1"));
+    await rewardToken.approve(FIGHTING_ADDRESS, ethers.parseEther("1"));
     const tx = await fighting.createArena(robotId);
     await tx.wait();
     setArenaId(tx.logs[0].args[0].toNumber());
